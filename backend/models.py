@@ -27,6 +27,7 @@ class Message(db.Model):
     receiver_id= db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     timestamp= db.Column(db.DateTime, default= datetime.now)
     content= db.Column(db.Text, nullable=False)
+    status = db.Column(db.String(20), default='unread') 
 
     sender = db.relationship('User', foreign_keys=[sender_id], backref=db.backref('sent_messages', lazy=True))
     receiver = db.relationship('User', foreign_keys=[receiver_id], backref=db.backref('received_messages', lazy=True))

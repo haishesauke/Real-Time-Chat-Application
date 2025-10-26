@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
 from auth_routes import auth_bp
+from message_routes import message_bp
 from models import db, User, Message
 from sqlalchemy import inspect
 from datetime import timedelta
@@ -20,6 +21,7 @@ db.init_app(app)
 jwt = JWTManager(app)
 
 app.register_blueprint(auth_bp)
+app.register_blueprint(message_bp)
 
 with app.app_context():
     try:
